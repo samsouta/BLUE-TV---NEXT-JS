@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { SubGenreDataType } from '@/src/types/genreType';
 import { useRouter } from 'next/router';
@@ -15,39 +15,30 @@ const GenreButton: React.FC<DataType> = ({ name, tag }) => {
 
     const List = ['genres', 'makers', 'series', 'short', 'actresses'];
 
-    const handleAction = useCallback(
-        (key: React.Key) => {
-            const selectedGenre = key.toString().toLowerCase().replace(/\s+/g, '');
+    const handleAction = (key: React.Key) => {
+        const selectedGenre = key.toString().toLowerCase().replace(/\s+/g, '');
 
-            if (selectedGenre === 'newrelease') {
-                // Navigate to the new release page
-                router.push(`/new-release`);
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth',
-                });
-            } else if (List.includes(selectedGenre)) {
-                router.push(`/actresses`);
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth',
-                });
-            } else if (selectedGenre) {
-                // For other genres, navigate as usual
-                localStorage.setItem('selectedGenre', selectedGenre);
-                router.push(`/gn/${selectedGenre}`);
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'smooth',
-                });
-
-            }
-
-
-        },
-        [router]
-    );
+        if (selectedGenre === 'newrelease') {
+            router.push(`/new-release`);
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        } else if (List.includes(selectedGenre)) {
+            router.push(`/actresses`);
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        } else if (selectedGenre) {
+            localStorage.setItem('selectedGenre', selectedGenre);
+            router.push(`/genres/${selectedGenre}`);
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth',
+            });
+        }
+    };
 
 
     return (

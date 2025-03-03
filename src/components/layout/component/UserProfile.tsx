@@ -14,6 +14,8 @@ const DEFAULT_AVATAR = 'https://i.pinimg.com/736x/76/da/dc/76dadcae2845339368c40
 
 const UserProfile: React.FC = () => {
     const router = useRouter();
+    const token = Cookies.get('token');
+
     // const [logOut] = useLogOutMutation();
     // const [isAlertOpen, setIsAlertOpen] = useState(false);
     // const [isLoggingOut, setIsLoggingOut] = useState(false);
@@ -48,7 +50,7 @@ const UserProfile: React.FC = () => {
      * Update user data when logging in or profile changes
      * 
      */
-    const token = Cookies.get('token');
+    
     const user = getUserData();
 
     /****
@@ -61,7 +63,7 @@ const UserProfile: React.FC = () => {
             // If token exists but no user data, redirect to login
             router.push('/login');
         }
-    }, [token]);
+    }, [token,router]);
 
     /***
      * 

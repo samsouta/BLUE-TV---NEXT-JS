@@ -1,5 +1,9 @@
-// utils/formatViews.js
-export const formatViews = ({views}:any) => {
+// utils/formatViews.ts
+interface ViewsProps {
+  views: number;
+}
+
+export const formatViews = ({views}: ViewsProps) => {
     if (views >= 1000000) {
       return (views / 1000000).toFixed(1) + 'M'; // Format as "1.0M"
     }

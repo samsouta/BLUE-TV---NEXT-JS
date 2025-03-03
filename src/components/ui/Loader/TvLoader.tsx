@@ -9,14 +9,11 @@ const TvLoader: React.FC = () => {
                     
                     <RotatingLines
                         visible={true}
-                        height="30"
                         width="30"
                         strokeColor="#e7efff"
                         strokeWidth="4"
                         animationDuration="0.75"
                         ariaLabel="rotating-lines-loading"
-                        wrapperStyle={{}}
-                        wrapperClass=""
                     />
                 </div>
             </div>

@@ -9,16 +9,16 @@ import Layout from '@/src/components/layout/Layout';
 
 
 type TagsDetailProps = {
-  tag: string;
+  genre: string;
   currentPage: number;
-  TagsVideo: MovieResponseType[];
+  GenreVideo: MovieResponseType[];
   lastPage: number;
 };
 
-const TagsDetail: React.FC<TagsDetailProps> = ({
-  tag,
+const GenreDetail: React.FC<TagsDetailProps> = ({
   currentPage,
-  TagsVideo,
+  genre,
+  GenreVideo,
   lastPage,
 }) => {
   const router = useRouter();
@@ -27,7 +27,7 @@ const TagsDetail: React.FC<TagsDetailProps> = ({
   const onPageChange = (page: number) => {
     router.push({
       pathname: router.pathname,
-      query: { tag, page },
+      query: { genre, page },
     });
   };
 
@@ -36,17 +36,17 @@ const TagsDetail: React.FC<TagsDetailProps> = ({
       <div className="mx-1 lg:mx-4">
         <div className="flex justify-center items-center">
           <h1 className="text-[var(--light-blue)] mb-6 text-2xl montserrat font-bold">
-            {(tag || 'Unknown')}
+            {(genre || 'Unknown')}
           </h1>
         </div>
 
         {/* Video Content*/}
-        {TagsVideo.length === 0 ? (
+        {GenreVideo?.length === 0 ? (
           <div className="text-center text-[var(--light-blue)]">No Video Found</div>
         ) : (
           <>
             <div className="flex-wrap grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-4">
-              {TagsVideo.map((item) => (
+              {GenreVideo.map((item) => (
                 <VideoCard key={item.id} data={item} actData={item?.actresses} />
               ))}
             </div>
@@ -75,26 +75,24 @@ const TagsDetail: React.FC<TagsDetailProps> = ({
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // get URL and page number
-  const { tag, page } = context.query;
+  const { genre, page } = context.query;
   const currentPage = page ? parseInt(page.toString()) : 1;
-  const tagStr = typeof tag === 'string' ? tag : '';
+  const genStr = typeof genre === 'string' ? genre : '';
 
   // fetch each tags videos from API
   const res = await fetch(
-    `https://bluetv.x10.mx/api/v1/mov/by-tag?tag=${encodeURIComponent(
-      tagStr
-    )}&page=${currentPage}`
+    `https://bluetv.x10.mx/api/v1/mov/by-subgenre?sub_genre=${genre}&page=${currentPage}`
   );
   const data = await res.json();
 
   return {
     props: {
-      tag: tagStr,
+      genre: genStr,
       currentPage,
-      TagsVideo: data?.data?.data || [],
-      lastPage: data?.data?.last_page || 1,
+      GenreVideo: data?.data || [],
+      lastPage: data?.last_page || 1,
     },
   };
 };
 
-export default TagsDetail;
+export default GenreDetail;

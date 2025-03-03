@@ -1,10 +1,12 @@
 import RelatedVideo from '@/src/components/features/videos/RelatedVideo';
 import Layout from '@/src/components/layout/Layout';
+import TvLoader from '@/src/components/ui/Loader/TvLoader';
 import VideoSelection from '@/src/components/ui/VideoSelection';
+import { useIncrementViewMutation } from '@/src/services/api/videoView';
 import { MovieDataType } from '@/src/types/MoviesType';
 import { formatRelativeDate } from '@/src/utils/formatRelativeDate';
 import { GetServerSideProps } from 'next';
-import React from 'react';
+import React, { useCallback } from 'react';
 
 type Props = {
     videos: MovieDataType;
@@ -17,7 +19,7 @@ const VideoDetail: React.FC<Props> = ({
 }) => {
 
 
-    // const [incrementView] = useIncrementViewMutation();
+    const [incrementView] = useIncrementViewMutation();
 
 
     /**
@@ -31,18 +33,17 @@ const VideoDetail: React.FC<Props> = ({
     /**
      * get view from iframe 
      */
+    const handleVideoPlayed = useCallback((videoId: number) => {
+        if (videoId) {
+            incrementView({ videoId });
+        }
+    }, [incrementView]);
 
-    // const handleVideoPlayed = useCallback((videoId: number) => {
-    //     if (videoId) {
-    //         incrementView({ videoId });
-    //     }
-    // }, [incrementView]);
+    if (!videos) return <TvLoader />;
 
-    // if (isLoading) return <TvLoader />;
-
-    // if (error || !data) {
-    //     return <div className="text-red-600 mt-28">Error fetching movie data</div>;
-    // }
+    if (!videos || !videos.id) {
+        return <div className="text-red-600 mt-28">Error fetching movie data</div>;
+    }
 
     return (
         <Layout>
@@ -63,7 +64,7 @@ const VideoDetail: React.FC<Props> = ({
                                         loading="lazy"
                                         sandbox="allow-scripts allow-same-origin allow-presentation"
                                         allowFullScreen
-                                    // onLoad={() => handleVideoPlayed(data?.movie.id)}
+                                    onLoad={() => handleVideoPlayed(videos?.id)}
                                     />
                                     <div className="cursor-not-allowed absolute bottom-0 z-50 right-14 rounded-md bg-transparent w-8 h-8"></div>
                                 </div>

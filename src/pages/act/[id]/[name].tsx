@@ -106,7 +106,7 @@ const ActModelPage: React.FC<ApiResponse> = ({
  */
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-    const { id, name } = context.params as { id: string };
+    const { id } = context.params as { id: string };
     const page = context.query.page ? parseInt(context.query.page as string) : 1;
 
     // fetch each tags videos from API

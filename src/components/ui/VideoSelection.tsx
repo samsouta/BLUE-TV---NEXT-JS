@@ -49,7 +49,9 @@ const VideoSelection: React.FC<CommentUIProps> = ({
     return (
         <div className="text-neutral-light ">
             <div className="max-w-4xl mx-auto lg:mx-0 py-2">
-                {/* Video Info Section */}
+                {
+                /* Video Info Section */
+                }
                 <div className="bg-white/20 backdrop-blur-xl rounded-xl p-6 mb-6 shadow-lg ring-1 ring-white/10">
                     <h1 className="text-md xl:text-2xl text-[var(--light-blue)]  mb-2 open-sans">
                         {data?.description}
@@ -77,7 +79,9 @@ const VideoSelection: React.FC<CommentUIProps> = ({
                     </div>
                 </div>
 
-                {/* Detail Section */}
+                {
+                /* Detail Section */
+                }
                 <div className="bg-white/20 max-h-[300px] overflow-y-scroll backdrop-blur-xl rounded-xl p-6 shadow-lg ring-1 ring-white/10">
                     <h2 className="text-lg montserrat font-bold text-[var(--soft-blue)] mb-4">
                         Code : <span className=' font-normal text-[var(--light-blue)] open-sans font-serif text-md' >{data?.title}</span>
@@ -117,7 +121,9 @@ const VideoSelection: React.FC<CommentUIProps> = ({
                             </div>
                         )}
 
-                        {/* /// tags *************** */}
+                        {
+                        /* /// tags *************** */
+                        }
                         <div className="flex flex-wrap gap-2">
                             <span className="text-lg montserrat font-bold text-[var(--soft-blue)]">Tags : </span>
                             {data?.tags?.map((tag) => (

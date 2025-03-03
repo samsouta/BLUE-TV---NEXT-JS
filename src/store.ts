@@ -5,6 +5,7 @@ import { actress } from './services/api/actress';
 import { VideoSlice } from './services/slice/VideoSlice';
 import { movies } from './services/api/movies';
 import { voting } from './services/api/voting';
+import { videoView } from './services/api/videoView';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     [actress.reducerPath]: actress.reducer,
     [movies.reducerPath]: movies.reducer,
     [voting.reducerPath]: voting.reducer,
+    [videoView.reducerPath]: videoView.reducer,
 
     /**
      * @callback slice reducer
@@ -34,6 +36,7 @@ export const store = configureStore({
       actress.middleware,
       movies.middleware,
       voting.middleware,
+      videoView.middleware,
     ),
 });
 
