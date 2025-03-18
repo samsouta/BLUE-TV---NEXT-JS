@@ -1,10 +1,10 @@
 import Image from 'next/image'
-import React from 'react'
-import logo from '../../../../public/img/logo.png'
 import Link from 'next/link'
+import React from 'react'
 
-const Logo = () => {
+export const VidSS = () => {
   return (
+    <>
     <Link href='/home' prefetch={true} >
       <div className="flex cursor-pointer items-center gap-2">
         <Image
@@ -12,8 +12,6 @@ const Logo = () => {
           alt="Blue TV logo" className=' w-16 h-16' />
       </div>
     </Link>
-
+    </>
   )
 }
-
-export default Logo

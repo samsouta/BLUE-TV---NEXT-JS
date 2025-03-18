@@ -6,6 +6,7 @@ const WatchMoreBtn: React.FC = () => {
     <>
       <Link
         href={'/home'}
+        prefetch={true}
       >
         <button className="border hover:scale-95 duration-300 relative group rounded-2xl cursor-pointer text-sky-50  overflow-hidden h-16 w-64 bg-transparent p-2 flex justify-center items-center font-extrabold">
           <div className="absolute right-32 -top-4  group-hover:top-1 group-hover:right-2 z-10 w-40 h-40 rounded-full group-hover:scale-150 duration-500 bg-pink-800"></div>

@@ -159,6 +159,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         tagData,
         genreData,
         randomVideos,
+
       },
     };
   } catch (error) {
